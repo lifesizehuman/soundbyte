@@ -1,0 +1,73 @@
+<div class="jumbotron text-center">
+  <h1>Favorite Musical Artists</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>My Favorite Artists</strong></h3>
+        </div>
+        <div class="panel-body">
+          <ol>
+            {{#each artists}}
+              {{#if this.status}}
+                <p>
+                  <li>
+                    <p>{{this.artist}}</p>
+                    <form action="/{{this.id}}?_method=PUT" method="POST">
+                      <input type="hidden" name="status" value="0">
+                      <button type="submit" class="btn btn-danger">Remove From Faves</button>
+                    </form>
+                  </li>
+                </p>
+              {{/if}}
+            {{/each}}
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Old Faves</strong></h3>
+        </div>
+        <div class="panel-body">
+          <ol>
+            {{#each artists}}
+              {{#unless this.status}}
+                <p>
+                  <li>
+                    <p>{{this.artist}}</p>
+                    <form action="/{{this.id}}?_method=DELETE" method="POST">
+                      <input type="hidden" name="status" value="1">
+                      <button type="submit" class="btn btn-info">Remove from List</button>
+                    </form>
+                  </li>
+                </p>
+              {{/unless}}
+            {{/each}}
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Add an Artist</strong></h3>
+        </div>
+        <div class="panel-body">
+          <form method="POST" action="/" class="button-size">
+            <p>
+              <input type="text" class="form-control" name="artist" placeholder="new artist">
+            </p>
+            <button type="submit" class="btn btn-success">Add Artist</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
