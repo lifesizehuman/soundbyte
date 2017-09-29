@@ -45,6 +45,11 @@
                       <input type="hidden" name="status" value="1">
                       <button type="submit" class="btn btn-info">Remove from List</button>
                     </form>
+
+                    <form action="/{{this.id}}?_method=PUT" method="POST">
+                      <input type="hidden" name="status" value="1">
+                      <button type="submit" class="btn btn-info">Add Back To Favorites</button>
+                    </form>
                   </li>
                 </p>
               {{/unless}}
